@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -97,7 +98,11 @@ public class DocUtil {
 					String raterNumText = obj.select(".star .pl").text();
 					String raterNum = raterNumText.substring(raterNumText.indexOf("(")+1,raterNumText.indexOf("人"));
 					
-					if(raterNum.startsWith("少于")|| (Integer.valueOf(raterNum)<1000)){
+					if(StringUtils.isBlank(rating) || 
+							StringUtils.isBlank(raterNum) ||
+							raterNum.startsWith("目前无") ||
+							raterNum.startsWith("少于")|| 
+							(Integer.valueOf(raterNum)<1000)){
 						continue;
 					}
 					
