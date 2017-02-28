@@ -49,7 +49,7 @@ public class DocUtil {
 	    			//按评分，由高到低排序
 	    			SortUtil.sortByRating(bookList);
 	    			//截取排好序的列表
-	    			List<BookEntity> subList = bookList.subList(0, 40);
+	    			List<BookEntity> subList = (bookList.size()>40)?bookList.subList(0, 40):bookList;
 	    			//导入excel表格
 	    			ExportExcelUtil.ExportExcel(subList);     
 	    			long endTime = System.currentTimeMillis();
